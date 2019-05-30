@@ -1,0 +1,31 @@
+<div id="FormModal" class="modal" style="background-color: rgba(0,0,0,.3)" ng-class="form.is_show ? 'form-show':''">
+    <div class="modal-content" style="width: 500px; margin: 7% auto;">
+        <h3 class="title">{{form.title}}</h3>
+        <loading-form data="loading_form"></loading-form>
+        <info-message data="info"></info-message>
+        <form name="formLoket" method="post" ng-submit="save(form.data, form.method)" ng-show="!loading_form.is_loading_form">
+            <input type="hidden" ng-model="form.data.id">
+            <div class="form-group row">
+                <label class="col-md-4">Nama</label>
+                <div class="col-md-8">
+                    <input type='text' name='name' class="form-control" ng-model="form.data.name" autocomplete="off" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-4">Nama Pengguna</label>
+                <div class="col-md-8">
+                    <input type='text' name='username' class="form-control" ng-model="form.data.username" autocomplete="off" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <div class="form-button">
+                        <button type="submit" class="btn btn-info" data-ng-disabled="formLoket.$invalid"><i class="fa fa-save"></i> Simpan</button>
+                        <button type="button" class="btn btn-danger" ng-click="formClose()"><i class="fa fa-close"></i> Tutup</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+</div>

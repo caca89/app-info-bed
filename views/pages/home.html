@@ -1,0 +1,206 @@
+<div class="module" ng-controller="homeCtrl">
+	<div class="module-header">
+		<h1 class="text-center">Sistem Manajemen Bed</h1>
+	</div>
+	<div class="module-body">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h3 class="choice-module"><i class="fa fa-th-large"></i> Pilihan Modul</h3>
+				</div>
+				<div class="col-md-3">
+					<div class="lists">
+						<a ui-sref="dashboard.general">
+							<div class="icon"><img src="assets/images/dashboard1.png"></div>
+							<div class="title">Dashboard Umum</div>
+						</a>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="lists">
+						<a ui-sref="dashboard.nurse">
+							<div class="icon"><img src="assets/images/dashboard2.png"></div>
+							<div class="title">Dashboard Perawat</div>
+						</a>
+					</div>
+				</div>
+				<!--
+				<div class="col-md-3">
+					<div class="lists">
+						<a ui-sref="auth_nurse.login">
+							<div class="icon"><img src="assets/images/adminnurse.png"></div>
+							<div class="title">Admin Perawat</div>
+						</a>
+					</div>
+				</div>
+				-->
+				<div class="col-md-3">
+					<div class="lists">
+						<a ui-sref="auth_admin.login">
+							<div class="icon"><img src="assets/images/adminpanel.png"></div>
+							<div class="title">Admin Panel</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="module-footer">
+		<p class="text-center">Created By <span>SIMRS Rumah Sakit Annisa Cikarang</span></p>
+	</div>
+	<div class="loading-page {{is_loading_page==false ? 'stop' : ''}}">
+		<div class="sk-three-bounce">
+		  <div class="sk-child sk-bounce1"></div>
+		  <div class="sk-child sk-bounce2"></div>
+		  <div class="sk-child sk-bounce3"></div>
+		</div>
+	</div>
+</div>
+<style type="text/css">
+
+	.module {
+		display: block;
+		position: relative;
+		overflow-y: auto;
+		visibility: visible; 
+		opacity: 1;
+		transition: all .1s;
+	}
+	.module.module-show {
+		visibility: visible; 
+		opacity: 1;
+	}
+	.module .module-header {
+		padding: 20px 0;
+		background: #0193ffcc;
+		color: white;
+		box-shadow: 0 5px 10px -3px #ccc;
+	}
+	.module .module-header h1{
+		font-size: 25px;
+		font-weight: bold;
+		letter-spacing: 2px;
+	}
+	.module .module-body {
+		padding-top: 15px;
+	}
+	.module .module-body .choice-module {
+		font-size: 22px;
+		padding: 10px 0;
+		margin-bottom: 30px;
+	}
+
+	.lists {
+		display: block;
+		padding: 0;
+		margin-bottom: 30px;
+	}
+	.lists a {
+		display: block;
+		padding: 10px;
+		height: 200px;
+		transition: all .3s;
+		box-shadow: 0 1px 3px 0px #ccc;
+		cursor: pointer;
+		color: #000;
+		font-size: 15px;
+		border-radius: 4px;
+	}
+	.lists a:hover,
+	.lists a:active,
+	.lists a:focus {
+		box-shadow: 0 5px 10px -3px #ccc;
+		text-decoration: none;
+		color: #000;
+		background: #ccc;
+	}
+	.lists .icon {
+		width: 50%;
+		margin: 10px auto;
+	}
+	.lists .icon img {
+		max-width: 100%;
+		width: 100%;
+	}
+	.lists .title {
+		font-size: 15px;
+		text-align: center;
+		padding-top: 10px;
+	}
+	.lists.redirect {
+		position: fixed;
+		width: 200px;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		border: 0;
+		z-index: 2000;
+	}
+
+	.module-footer {
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: #fff;
+		border-top: 1px solid #ccc;
+	}
+	.module-footer p {
+		padding: 15px;
+		margin: 0;
+		font-size: 12px;
+	}
+	.module-footer p span {
+		font-weight: bold;
+	}
+
+	.loading-redirect {
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		z-index: 1000;
+		background: #ffffff;
+	}
+	.loading-redirect .content {
+		width: 400px;
+		max-width: 100%;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-align: center;
+	}
+	.loading-redirect .content span {
+		display: block;
+		text-align: center;
+		font-size: 15px;
+		line-height: 20px;
+		padding: 20px;
+	}
+	.loading-redirect img {
+		margin-bottom: 20px;
+		width: 75px;
+		margin: 0 auto;
+		animation-name: stretch;
+		animation-duration: .5s; 
+		animation-timing-function: ease-out; 
+		animation-delay: 0;
+		animation-direction: alternate;
+		animation-iteration-count: infinite;
+		animation-fill-mode: none;
+		animation-play-state: running;
+	}
+
+	@keyframes stretch {
+		0% {
+			transform: scale(.7);
+		}
+		50% {
+		}
+		100% {
+			transform: scale(1);
+		}
+	}
+</style>

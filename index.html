@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
+  <link rel="shortcut icon" href="img/favicon.png">
+
+  <title>Aplikasi Informasi Bed | RS ANNISA CIKARANG</title>
+
+  <!-- Main styles for this application -->
+  <link href="assets/css/font-awesome.min.css?v=1.0" rel="stylesheet">
+  <link href="assets/css/glyphicons.css?v=1.0" rel="stylesheet">
+  <link href="assets/css/bootstrap.min.css?v=1.0" rel="stylesheet">
+  <!-- <link href="assets/css/datatable.css" rel="stylesheet"> -->
+  <link href="assets/vendors/datatables/css/dataTables.bootstrap.css?v=1.0" rel="stylesheet">
+  <link href="assets/css/jquery-ui.min.css?v=1.0" rel="stylesheet">
+  <link href="assets/css/style.css?v=1.0" rel="stylesheet">
+  <link href="assets/css/stylemodal.css?v=1.0" rel="stylesheet">
+  <!-- <script src="node_modules/socket.io/node_modules/socket.io-client/socket.io.js"></script> -->
+
+  <script type="text/javascript">
+    var baseUrl   = window.location.origin+"/v2";
+    var secretKey = "medcaresystem2018";
+    // var socket = io.connect( "192.168.0.26:4000" );
+  </script>
+  <style type="text/css">
+  a:focus,
+  a:hover,
+  a:visited {
+    outline: none;
+  }
+  .clear::before,
+  .clear::after {
+    content: "";
+    display: table;
+  }
+  .clear::after {
+    clear: both
+  }
+.loading-page {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  visibility: visible;
+  opacity: 1;
+  transition: all .3s;
+  z-index: 99999;
+}
+.loading-page.stop {
+  visibility: hidden;
+  opacity: 0;
+}
+.loading-room,
+.loading-classes{
+  position: fixed;
+  margin: 0 auto;
+  top: 68px;
+  left: 200px;
+  right: 0;
+  bottom: 0;
+  background: #f9f9f9;
+  visibility: hidden;
+  opacity: 0;
+  transition: all .3s;
+  z-index: 1100;
+}
+.loading-classes{
+  top: 125px;
+}
+.loading-room.start, 
+.loading-classes.start{
+  visibility: visible;
+  opacity: 1;
+}
+.sk-three-bounce {
+  margin: 0 auto;
+  position: relative;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 80px;
+  text-align: center; }
+  .sk-three-bounce .sk-child {
+    width: 20px;
+    height: 20px;
+    background-color: #333;
+    border-radius: 100%;
+    display: inline-block;
+    -webkit-animation: sk-three-bounce 1.4s ease-in-out 0s infinite both;
+            animation: sk-three-bounce 1.4s ease-in-out 0s infinite both; }
+  .sk-three-bounce .sk-bounce1 {
+    -webkit-animation-delay: -0.32s;
+            animation-delay: -0.32s; }
+  .sk-three-bounce .sk-bounce2 {
+    -webkit-animation-delay: -0.16s;
+            animation-delay: -0.16s; }
+
+@-webkit-keyframes sk-three-bounce {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0);
+            transform: scale(0); }
+  40% {
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+@keyframes sk-three-bounce {
+  0%, 80%, 100% {
+    -webkit-transform: scale(0);
+            transform: scale(0); }
+  40% {
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+  </style>
+</head>
+
+<body>
+
+  <!-- User Interface -->
+  <ui-view class="app"></ui-view>
+
+  <!-- Bootstrap and necessary plugins -->
+  <script src="assets/vendors/jquery/dist/jquery.min.js?v=1.0"></script>
+  <script src="assets/js/jquery-ui.min.js?v=1.0"></script>
+  <script src="assets/vendors/bootstrap/dist/js/bootstrap.min.js?v=1.0"></script>
+  <script type="text/javascript" charset="utf8" src="assets/vendors/datatables/js/jquery.dataTables.js?v=1.0"></script>
+  <script type="text/javascript" charset="utf8" src="assets/vendors/datatables/js/dataTables.bootstrap.js?v=1.0"></script>
+
+  <!-- AngularJS -->
+  <script src="assets/vendors/angular/angular.min.js?v=1.0"></script>
+
+  <!-- AngularJS plugins -->
+  <!-- <script src="assets/js/ng-google-chart.js?v=1.0"></script> -->
+  <script src="assets/vendors/angular-animate/angular-animate.min.js?v=1.0"></script>
+  <script src="assets/vendors/angular-sanitize/angular-sanitize.min.js?v=1.0"></script>
+  <script src="assets/vendors/@uirouter/angularjs/release/angular-ui-router.min.js?v=1.0"></script>
+  <script src="assets/vendors/oclazyload/dist/ocLazyLoad.min.js?v=1.0"></script>
+  <script src="assets/vendors/ngstorage/ngStorage.min.js?v=1.0"></script>
+  <script src="assets/js/angular-idle.js?v=1.0"></script>
+
+  <!-- AngularJS CoreUI App scripts -->
+  <script type="text/javascript">
+      var dev = Math.floor(Math.random() * 100);
+      document.write('<script src="app/app.js?dev=' + dev + '"\><\/script>');
+      document.write('<script src="app/routes.js?dev=' + dev + '"\><\/script>');
+      document.write('<script src="app/controllers/headerNurseCtrl.js?dev=' + dev + '"\><\/script>');
+      document.write('<script src="app/controllers/headerAdminCtrl.js?dev=' + dev + '"\><\/script>');
+      document.write('<script src="app/directives.js?dev=' + dev + '"\><\/script>');
+      document.write('<script src="app/factory/data.js?dev=' + dev + '"\><\/script>');
+      document.write('<script src="app/factory/loginService.js?dev=' + dev + '"\><\/script>');
+      document.write('<script src="app/factory/administration.js?dev=' + dev + '"\><\/script>');
+  </script>
+</body>
+</html>

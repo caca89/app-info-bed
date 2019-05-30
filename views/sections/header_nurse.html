@@ -1,0 +1,31 @@
+<div id="header" ng-controller="headerNurseCtrl">
+    <div id="topheader">
+        <div class="logo">
+            <h3>Aplikasi Manajemen Bed</h3>
+            <p>RS Annisa Cikarang</p>
+        </div>
+        <div class="user">
+            <ul class="nav-right">
+                <li>
+                    <a href="#"><i class="fa fa-user"></i> {{$storage.name}}</a>
+                    <ul>
+                        <li class="user-header">
+                            <p>
+                                <span>{{$storage.name}}</span>
+                                <small>Last Login : {{$storage.last_login}}</small>
+                            </p>
+                        </li>
+                        <li class="user-footer">
+                            <div class="pull-right"><a href="#" class="logout" ng-click="doLogout()">Keluar</a></div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id='topmenu'>
+        <ul>
+            <li><a ui-sref-active="active" ui-sref="admin_nurse.dashboard">Dashboard</a></li>
+        </ul>
+    </div>
+</div>

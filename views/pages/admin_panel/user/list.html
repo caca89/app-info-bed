@@ -1,0 +1,21 @@
+<div class="content" ng-controller="adminUserCtrl">
+    <loading-page data="is_loading_page"></loading-page>
+    <div class="title">
+        <div class="pull-right">
+            <button type="button" class="btn btn-info" ng-click="create()"><i class="fa fa-plus"></i> Tambah</button>
+        </div>
+        <h3>{{module.title}}</h3>
+    </div>
+    <div class="body">
+        <div class="table-responsive">
+            <table id='data-grid' class='table table-bordered table-condensed table-hover' style='width: 100%!important;'>
+                <thead>
+                    <tr>
+                        <th ng-repeat="(key, table) in tables.columns" style="width: {{table.width}}">{{table.title}}</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div ng-include="module.form"></div>
+    </div>
+</div>

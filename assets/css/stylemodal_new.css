@@ -1,0 +1,17 @@
+.modal {
+	z-index:10;
+	padding-left: 220px;
+	padding-top: 93px;
+}
+.modal-content {
+	border:0;border-radius:0;
+	box-shadow: initial;
+	width: 100%!important;
+	min-height: 100%!important;
+	margin: initial!important;
+	background-color: #fff!important;
+}
+fieldset {
+	padding: 20px!important;
+	border: 1px solid #adadad!important;
+}

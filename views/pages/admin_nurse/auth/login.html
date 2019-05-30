@@ -1,0 +1,55 @@
+<div class="bg-login"><img src="assets/images/bg1.jpg"></div>
+<div id="login" ng-controller="nurseAuthCtrl" ng-class="is_loading_page ? '':'show'">
+    <div ng-if="maintenance" 
+    style="margin: 7% auto; width: 50%;">
+        <h3 style="font-size: 25px; line-height: 35px; color: red">
+            Mohon maaf, aplikasi sedang dalam perbaikan.
+            <br>
+            Akan berjalan kembali setelah perbaikan selesai.
+        </h3>
+        <style>
+        #login {width: 100%!important;}
+        </style>
+    </div>
+    <div ng-if="!maintenance">
+    <info-message data="info"></info-message>
+    <div class="login">
+        <div class="logo">
+            <img src="assets/images/adminnurse.png">
+            <h3 style="margin-bottom: 20px;">Admin Perawat</h3>
+            <span>Silahkan Login</span>
+        </div>
+        <form method="post" name="formLogin" ng-submit="doLogin(login)">
+            <div class="forms">
+                <label>Nama Pengguna</label>
+                <input type="text" ng-model="login.username" required>
+            </div>
+            <div class="forms">
+                <label>Kata Sandi</label>
+                <input type="password" ng-model="login.password" required>
+            </div>
+            <div class="forms">
+                <label>Kata Sandi</label>
+                <select ng-model="login.room" required>
+                    <option value="">Pilih Ruangan</option>
+                    <option ng-repeat="r in list_rooms" value="{{r.no_kamar}}">{{r.no_kamar}}</option>
+                </select>
+            </div>
+            <div class="forms" style="margin-top: 15px;">
+                <button type="submit" data-ng-disabled="formLogin.$invalid">Masuk</button>
+            </div>
+            <div class="">
+                <a ui-sref="home">Kembali ke home</a>
+            </div>
+        </form>
+    </div>
+    <p class="text-center" style="position: absolute; font-size: 11px; letter-spacing: 1px; left:0;right:0;bottom:0; padding: 15px;background: #ccc;">Created By <strong>SIMRS Rumah Sakit Annisa Cikarang</strong></p>
+    <div class="loading-page {{is_loading_page==false ? 'stop' : ''}}">
+        <div class="sk-three-bounce">
+          <div class="sk-child sk-bounce1"></div>
+          <div class="sk-child sk-bounce2"></div>
+          <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+	</div>
+</div>

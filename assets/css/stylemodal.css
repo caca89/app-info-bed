@@ -1,0 +1,71 @@
+form input[type=text], form select, form textarea {width:100%;}
+input[readonly], select[disabled] {background-color:rgb(235, 235, 228, .3);border:1px solid #a9a9a9;}
+.modal {display:block;visibility: hidden;position:fixed;z-index:9999999;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgb(255,255,255);background-color:rgba(0, 37, 71, .7);transition: all 100ms}
+.modal.form-show {visibility: visible;}
+.modal-content {position: relative;top: -100%;background-color:#fefefe;margin:0 auto!important;max-width:100%;overflow:hidden;border: 0px solid #c5c5c5;border-radius: 0px;box-shadow: 0 1px 3px rgba(0,0,0,.1);transition: all 300ms}
+.modal.form-show .modal-content {top: 0%;}
+.modal-content h3.title {font-size:16px;font-weight: 500;padding: 15px 20px;background: #eee;}
+.modal-content {margin-bottom: 5px;}
+.modal-content .form-button {padding-top: 10px;text-align: right;}
+form {
+	text-align: initial;
+	position: relative;
+    padding: 20px!important;
+}
+fieldset {
+}
+legend {
+	font-size: 13px;
+    font-weight: bold;
+	width: 100%;
+	padding-bottom: 5px;
+    border-bottom: 1px solid #adadad;
+    margin-bottom: 10px;
+}
+.input-groups {
+	position: relative;
+	margin-bottom: 0;
+}
+.input-groups input {
+	border-radius: 0!important;
+}
+.input-groups button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+.input-groups span {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    background: #adadad;
+    font-size: 14px;
+    padding: 2px 15px;
+}
+button[disabled] {
+	color: rgba(0,0,0,0.5);
+}
+ul.ui-autocomplete { z-index: 9999999; }
+
+.form-control:focus {
+    border-color: #a2a2a2;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 4px rgba(170, 170, 170, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 2px rgba(170, 170, 170, 0.6);
+}
+
+.pagination>.active>a,
+.pagination>.active>span,
+.pagination>.active>a:hover,
+.pagination>.active>span:hover,
+.pagination>.active>a:focus,
+.pagination>.active>span:focus {
+	background-color: #adadad;
+    border-color: #adadad;
+}
+.pagination>li>a, .pagination>li>span {
+	color: #666;
+}

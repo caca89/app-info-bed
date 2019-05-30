@@ -1,0 +1,295 @@
+<div class="content" ng-controller="nurseDashboardCtrl">
+    <div class="choice-module">
+        <h3 class="">{{module.title}}</h3>
+        <ul class="classes">
+            <li ng-repeat="(k,v) in admin_nurse.list_classes"><a href="#" ng-class="v.nama_klas==selected.classes?'active':''" ng-click="clickClasses(v.nama_klas)">{{v.nama_klas}}</a></li>
+        </ul>
+    </div>
+    <div class="body">
+        <div id="list-bed clear">
+            <div class="bed" ng-repeat="(k,r) in admin_nurse.list_beds">
+                <div class="box" ng-class="is_bed_show">
+                    <div class="list-tab clear">
+                        <div class="tabs" ng-class="r.info_pasien.no_mr?'active':''">Info Pasien</div>
+                        <!-- iv class="tabs" ng-class="r.info_booking.no_mr?'booking':''" ng-click="clickInfo('inf_booking')">Info Booking</div>-->
+                    </div>
+                    <div class="info" ng-if="r.info_pasien.no_mr">
+                        <table>
+                            <tr>
+                                <td style="width: 85px;">No. MR</td>
+                                <td style="width: 10px;">:</td>
+                                <td style="width: auto;">{{r.info_pasien.no_mr}}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 85px;">Nama Pasien</td>
+                                <td style="width: 10px;">:</td>
+                                <td style="width: auto;">{{r.info_pasien.nama_pasien}}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 85px;">Diagnosa Awal</td>
+                                <td style="width: 10px;">:</td>
+                                <td style="width: auto;">{{r.info_pasien.diagnosa_awal}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                 <!--    <div class="info" ng-if="r.info_booking.no_mr&&tab_info_active=='inf_booking'">
+                        <table>
+                            <tr>
+                                <td style="width: 85px;">No. MR</td>
+                                <td style="width: 10px;">:</td>
+                                <td style="width: auto;">{{r.info_booking.no_mr}}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 85px;">Nama Pasien</td>
+                                <td style="width: 10px;">:</td>
+                                <td style="width: auto;">{{r.info_booking.nama_pasien}}</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 85px;">Diagnosa Awal</td>
+                                <td style="width: 10px;">:</td>
+                                <td style="width: auto;">{{r.info_booking.diagnosa_awal}}</td>
+                            </tr>
+                        </table>
+                    </div> -->
+
+                    <div class="image">
+                        <span>{{r.no_bed}}</span>
+                        <img src="assets/images/status_bed{{r.status_bed}}.png">
+                    </div>
+                    <div class="button-action" ng-if="r.status=='ISI'">
+                        <div ng-if="r.status_bed==6">
+                            <button type="button" ng-click="updateStatusBed(r, 0)">KOSONG</button>
+                            <button type="button" ng-click="updateStatusBed(r, 5)">RUSAK</button>
+                        </div>
+                        <div ng-if="r.status_bed==5">
+                            <button type="button" ng-click="updateStatusBed(r, 0)">KOSONG</button>
+                            <button type="button" ng-click="updateStatusBed(r, 6)">RUSAK</button>
+                        </div>
+                        <div ng-if="r.status_bed==4">
+                            <button type="button" ng-click="updateStatusBed(r, 0)">KOSONGKAN</button>
+                        </div>
+                        <div ng-if="r.status_bed==0 || r.status_bed==1">
+                            <button type="button" ng-click="updateStatusBed(r, 5)">RUSAK</button>
+                            <button type="button" ng-click="updateStatusBed(r, 6)">PERBAIKAN</button>
+                        </div>
+                    </div>
+                    <div class="button-action" ng-else>
+                        <div ng-if="r.status_bed==6">
+                            <button type="button" ng-click="updateStatusBed(r, 0)">KOSONG</button>
+                            <button type="button" ng-click="updateStatusBed(r, 5)">RUSAK</button>
+                        </div>
+                        <div ng-if="r.status_bed==5">
+                            <button type="button" ng-click="updateStatusBed(r, 0)">KOSONG</button>
+                            <button type="button" ng-click="updateStatusBed(r, 6)">PERBAIKAN</button>
+                        </div>
+                        <div ng-if="r.status_bed==4">
+                            <button type="button" ng-click="updateStatusBed(r, 0)">KOSONGKAN</button>
+                        </div>
+                        <div ng-if="r.status_bed==0 || r.status_bed==1">
+                            <button type="button" ng-click="updateStatusBed(r, 5)">RUSAK</button>
+                            <button type="button" ng-click="updateStatusBed(r, 6)">PERBAIKAN</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-include="'views/pages/admin_nurse/dashboard/form.html'"></div>
+    </div>
+    <div class="loading-page {{is_loading_page==false ? 'stop' : ''}}">
+        <div class="sk-three-bounce">
+          <div class="sk-child sk-bounce1"></div>
+          <div class="sk-child sk-bounce2"></div>
+          <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <div class="loading-classes" ng-class="loading.classes">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .loading-classes {
+        left: 0;
+        top: 170px;
+    }
+    #content {
+        padding-top: 170px;
+    }
+    .clear::before,
+    .clear::after {
+        content: "";
+        display: table;
+    }
+    .clear::after {
+        clear: both
+    }
+    .choice-module {
+        position: fixed;
+        top: 116px;
+        left: 0;
+        right: 0;
+        background: #f9f9f9;
+        z-index: 100;
+    }
+    .choice-module h3 {
+        float: left;
+        font-size: 22px;
+        padding: 15px;
+        margin-right: 15px;
+    }
+    ul.classes {
+        margin-top: 15px;
+    }
+    ul.classes > li {
+        float: left;
+        margin-right: 10px;
+    }
+    ul.classes > li > a {
+        font-size: 14px;
+        padding: 5px 10px;
+        color: #333;
+        background: transparent;
+        letter-spacing: 1px;
+    }
+    ul.classes > li > a:hover {
+        background: #12acf3;
+        color: #fff;
+        text-decoration: none;
+    }
+    ul.classes > li > a:focus,
+    ul.classes > li > a:active,
+    ul.classes > li > a:hover {
+        text-decoration: none;
+    }
+    ul.classes > li > a.active {
+        background: #12acf3;
+        color: #fff;
+        font-weight: bold;
+    }
+    .room {
+        margin-bottom: 10px;
+        background: #ffffff;
+    }
+    .room .room-header {
+        background: #ccc;
+        padding: 10px;
+        font-size: 15px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+    .room .room-body {
+        box-shadow: 0 2px 2px -1px #ccc;
+        background: #fff;
+    }
+    #list-bed {
+        /*position: relative;*/
+    }
+    #list-bed:before,
+    #list-bed:after {
+        content: "";
+        display: table;
+    }
+    #list-bed:after {
+        clear: both
+    }
+    .bed {
+        float: left;
+        width: 33.33333%;
+        padding: 5px;
+    }
+    .bed .box {
+        position: relative;
+        background: #eee;
+        height: 150px;
+        box-shadow: 0 1px 3px 0px #ccc;
+        overflow: hidden;
+        transform: scale(.1,.1);
+        visibility: hidden;
+        opacity: 0;
+        transition: all 300ms;
+        padding-right: 110px;
+    }
+    .bed .box.bed-show {
+        transform: scale(1,1);
+        visibility: visible;
+        opacity: 1;
+    }
+    .bed .box .image span {
+        display: block;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 5px;
+        margin-bottom: 5px;
+        letter-spacing: 2px;
+    }
+    .bed .box .image {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 100px;
+        background: #fff;
+        text-align: center;
+    }
+    .bed .box .image img {
+        width: 100%;
+        width: 60px;
+    }
+    .bed .box .info {
+        padding-left: 5px;
+    }
+    .list-tab {
+        padding: 5px;
+    }
+    .list-tab .tabs {
+        float: left;
+        width: 100px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 2px 0;
+        margin-bottom: 0px;
+        margin-right: 10px;
+        cursor: pointer;
+        background: #ccc;
+        border-radius: 4px;
+        transition: all .3s;
+    }
+    .list-tab .tabs.active {
+        background: #12acf3;
+        color: #fff;
+    }
+    .list-tab .tabs.booking {
+        color: red;
+        font-weight: bold;
+    }
+    .bed .box .info table {
+        font-size: 11px;
+    }
+    .bed .box .info table tr td {
+        vertical-align: top;
+        padding: 2px;
+    }
+    .button-action {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 100px;
+        text-align: center;
+        height: 30px;
+    }
+    .button-action button {
+        top: 0;
+        border: 0;
+        background: blue;
+        color: #fff;
+        padding: 4px 10px;
+        font-size: 12px;
+        width: 100px
+    }
+
+</style>

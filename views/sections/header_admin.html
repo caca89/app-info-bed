@@ -1,0 +1,33 @@
+<div id="header" ng-controller="headerAdminCtrl">
+    <div id="topheader">
+        <div class="logo">
+            <h3>Aplikasi Manajemen Bed</h3>
+            <p>RS Annisa Cikarang</p>
+        </div>
+        <div class="user">
+            <ul class="nav-right">
+                <li>
+                    <a href="#"><i class="fa fa-user"></i> {{$storage.name}}</a>
+                    <ul>
+                        <li class="user-header">
+                            <p>
+                                <span>{{$storage.name}}</span>
+                                <small>Login Terakhir : {{$storage.last_login}}</small>
+                            </p>
+                        </li>
+                        <li class="user-footer">
+                            <div class="pull-right"><a href="#" class="logout" ng-click="doLogout()">Keluar</a></div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id='topmenu'>
+        <ul>
+            <li><a ui-sref-active="active" ui-sref="admin_panel.dashboard">Dashboard</a></li>
+            <li><a ui-sref-active="active" ui-sref="admin_panel.report">Laporan</a></li>
+            <li ng-if="group==0||!group"><a ui-sref-active="active" ui-sref="admin_panel.user">Pengguna</a></li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div id="FormModal" class="modal" style="background-color: rgba(0,0,0,.3)" ng-class="form.is_show ? 'form-show':''">
+    <div class="modal-content" style="width: 400px; margin: 7% auto;">
+        <h3 class="title">{{form.title}}</h3>
+        <form name="formBrand" method="post" ng-submit="save(form.data, form.method)" ng-show="!loading_form.is_loading_form">
+            <p class="ask">{{form.ask}}</p>
+            <hr>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <div class="form-button">
+                        <button type="submit">YA</button>
+                        <button type="button" ng-click="formClose()">TIDAK</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="result" ng-show="loading_form.is_loading_form">
+            <div class="msg-icon">
+                <i class="fa fa-check" ng-if="info.status_text=='OK'"></i>
+                <i class="fa fa-close" ng-if="info.status_text=='NO'"></i>
+            </div>
+            <div class="msg-loading" ng-if="info.status_text=='LOADING'">{{info.message}}</div>
+            <div class="msg-text" ng-if="info.status_text!='LOADING'">{{info.message}}</div>
+            <div class="form-button" ng-if="info.status_text!='LOADING'">
+                <button type="button" ng-click="formClose()">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .ask {
+        font-size: 16px;
+        font-weight: 700;
+        text-align: center;
+        line-height: 30px;
+    }
+    .form-button {
+        text-align: center!important;
+    }
+    .form-button > button {
+        font-size: 12px;
+        width: 75px;
+    }
+    #result {
+        padding: 10px;
+    }
+    #result .msg-text,
+    #result .msg-loading {
+        text-align: center;
+        padding-bottom: 20px;
+        font-size: 16px;
+        font-weight: 700;
+    }
+    #result .msg-loading {
+        padding: 30px 10px;
+    }
+    #result .msg-icon {
+        text-align: center;
+        font-size: 50px;
+    }
+    #result .msg-icon .fa-check {
+        color: green;
+    }
+    #result .msg-icon .fa-close {
+        color: red;
+    }
+</style>

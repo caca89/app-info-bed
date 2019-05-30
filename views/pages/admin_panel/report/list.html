@@ -1,0 +1,164 @@
+<div class="content" ng-controller="adminReportCtrl">
+    <loading-page data="is_loading_page"></loading-page>
+    <div class="title">
+        <h3>{{module.title}} <a href="#" ng-if="results.length>0 && !loading_search" ng-click="backToSearch()">Kembali</a></h3>
+    </div>
+    <div class="body">
+        <div class="row">
+            <div class="col-md-12">
+                <div ng-if="loading_search">Sedang memuat...</div>
+                <div class="form-search" style="width: 300px; margin: 0 auto; padding: 15px;" ng-if="results.length==0 && !loading_search">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <div class="form-group row">
+                                <label class="col-md-12">Tanggal Awal</label>
+                                <div class="col-md-12">
+                                    <input my-date type="text" class="form-control" name="date_start" ng-model="search.date_start">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-12">Tanggal Akhir</label>
+                                <div class="col-md-12">
+                                    <input my-date type="text" class="form-control" name="date_end" ng-model="search.date_end">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12" style="margin-top: 15px;">
+                                    <button type="button" class="btn btn-info" ng-click="searchReport(search)">Cari</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="result" ng-if="results.length>0 && !loading_search">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-condensed">
+                            <thead>
+                                <tr class="bg-danger">
+                                    <td rowspan="2" style="text-align: center; vertical-align: middle; width: 25px;">NO.</td>
+                                    <td rowspan="2" style="text-align: center; vertical-align: middle; width: 100px;">TANGGAL</td>
+                                    <td rowspan="2" style="text-align: center; vertical-align: middle;">INFO PASIEN</td>
+                                    <td rowspan="2" style="text-align: center; vertical-align: middle; width: 100px;">NO. BED</td>
+                                    <!-- <td colspan="2" class="text-center">TANGGAL</td> -->
+                                    <td colspan="4" class="text-center">PROSES</td>
+                                    <td rowspan="2"style="text-align: center; vertical-align: middle;">STATUS</td>
+                                </tr>
+                                <tr class="bg-danger">
+                                    <!--
+                                    <td style="width: 100px;" class="text-center">MASUK</td>
+                                    <td style="width: 100px;" class="text-center">PULANG</td>
+                                    -->
+                                    <td style="width: 100px;" class="text-center">DEPO</td>
+                                    <td style="width: 100px;" class="text-center">ADM RI</td>
+                                    <td style="width: 100px;" class="text-center">KASIR RI</td>
+                                    <td style="width: 100px;" class="text-center">PULANG</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="(k, r) in results" ng-class="k%2==0?'bg-success':'bg-warning'">
+                                    <td>{{ k+1 }}</td>
+                                    <td>{{ r.dates }}</td>
+                                    <td>
+                                        <div>{{ r.patient_name+" ("+r.no_mr+")"  }}</div>
+                                    </td>
+                                    <td>{{ r.no_bed }}</td>
+                                    <!--
+                                    <td>{{ r.time_in }}</td>
+                                    <td>{{ r.time_out!=null?r.time_out:"-" }}</td>
+                                    -->
+                                    <td>{{ "" }}</td>
+                                    <td>{{ r.time_adm_ri }}</td>
+                                    <td>{{ r.time_kasir_ri }}</td>
+                                    <td>{{ "" }}</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .searching {
+        width: 100%;
+        margin: 0 auto;
+        box-shadow: 0 1px 3px 0px #ccc;
+    }
+    .search-header {
+        padding: 10px 20px;
+        background: #000;
+        color: #fff;
+        font-size: 15px;
+        font-weight: bold;
+    }
+    .search-body {
+        padding: 20px 20px 10px 20px;
+    }
+
+    .content{
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    .period {
+        /*position: absolute;*/
+        font-size: 15px;
+        font-weight: bold;
+        /*top: 15px;
+        right: 15px;*/
+        text-align: right;
+        /*margin-bottom: 10px;*/
+    }
+    .period > .choice {
+        display: inline-block;
+        position: relative;
+        width: 200px;
+        height: 31px;
+        padding: 5px 20px 5px 10px;
+    }
+    .period > .choice > a {
+        position: absolute;
+        right: 0;
+        top: 5px;
+        font-size: 15px;
+    }
+    .combo {
+        position: absolute;
+        width: 100%;
+        right: -100%;
+        top: 31px;
+        visibility: hidden;
+        opacity: 0;
+        background: #fff;
+        box-shadow: 0 1px 3px 0px #ccc;
+        border-radius: 4px;
+        transition: all .3s;
+        z-index: 9999;
+    }
+    .combo.show {
+        visibility: visible;
+        opacity: 1;
+        right: 0;
+    }
+    .combo .combo-header {
+        position: relative;
+        padding: 10px 15px;
+        font-size: 14px;
+        text-align: left;
+    }
+    .combo .combo-header span {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        cursor: pointer;
+    }
+    .combo .combo-body {
+        padding: 10px 15px;
+    }
+    .combo .combo-body select {
+        margin-bottom: 10px;
+    }
+
+</style>

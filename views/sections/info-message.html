@@ -1,0 +1,42 @@
+<div id="infoMessage" ng-show="info.show" ng-class="info.status_text=='LOADING' ? 'loading' : ''" ng-click="closeMessage()">
+    <div class="message-ok" ng-click="closeMessage()" ng-if="info.status_text=='OK'">{{info.message}}</div>
+    <div class="message-no" ng-click="closeMessage()" ng-if="info.status_text=='NO'">{{info.message}}</div>
+    <div class="loading" ng-click="closeMessage()" ng-if="info.status_text=='LOADING'">Sedang menyimpan data...</div>
+    <style type="text/css">
+        #infoMessage {
+            display: block!important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255,255,255,.9);
+            transition: all .3s;
+            z-index: 9999;
+            min-height: 1px;
+        }
+        #infoMessage.ng-hide {
+            top: -100%;
+        }
+        #infoMessage.ng-hide.loading {
+            top: 0;
+        }
+        #infoMessage.loading {
+            bottom: 0;
+        }
+
+        #infoMessage > div {
+            display: block;
+            color: #000;
+            font-size: 12px;
+            letter-spacing: 1px;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #adadad;
+            background-color: #eeeeee;
+            cursor: pointer;
+        }
+        #infoMessage > div.message-ok { color: green; }
+        #infoMessage > div.message-no { color: red; }
+    </style>
+</div>
+

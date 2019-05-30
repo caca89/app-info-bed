@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title><?php echo "{$title} | Pos Brother"; ?></title>
+
+	<?php
+	/** -- Copy from here -- */
+	if(!empty($meta))
+	foreach($meta as $name=>$content){
+		echo "\n\t\t";
+		?><meta name="<?php echo $name; ?>" content="<?php echo $content; ?>" /><?php
+			 }
+	echo "\n";
+
+	if(!empty($canonical))
+	{
+		echo "\n\t\t";
+		?><link rel="canonical" href="<?php echo $canonical?>" /><?php
+
+	}
+	echo "\n\t";
+
+	foreach($css as $file){
+	 	echo "\n\t\t";
+		?><link rel="stylesheet" href="<?php echo $file; ?>" type="text/css" /><?php
+	} echo "\n\t";
+
+	foreach($js as $file){
+			echo "\n\t\t";
+			?><script src="<?php echo $file; ?>"></script><?php
+	} echo "\n\t";
+
+	/** -- to here -- */
+?>
+	
+	<style>
+	body {
+		background-color:#ddd;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- Page container -->
+	<div class="page-container login-container">
+
+		<!-- Page content -->
+		<div class="page-content">
+
+			<!-- Main content -->
+			<div class="content-wrapper">
+
+				<!-- Content area -->
+				<div class="content">
+					<?php echo $output; ?>
+
+					<!-- Footer -->
+					<div class="footer text-muted">
+					</div>
+					<!-- /footer -->
+
+				</div>
+				<!-- /content area -->
+
+			</div>
+			<!-- /main content -->
+
+		</div>
+		<!-- /page content -->
+
+	</div>
+	<!-- /page container -->
+
+</body>
+</html>

@@ -1,0 +1,178 @@
+<div class="module" ng-controller="dashboardGeneralCtrl">
+	<div ng-if="maintenance" 
+	style="margin: 7% auto; width: 50%;">
+		<h3 style="font-size: 25px; line-height: 35px; color: red">
+			Mohon maaf, aplikasi sedang dalam perbaikan.
+			<br>
+			Akan berjalan kembali setelah perbaikan selesai.
+		</h3>
+	</div>
+	<div class="module-header" ng-if="!maintenance">
+		<a ui-sref="home" class="back"><i class="fa fa-angle-left"></i> Kembali</a>
+		<h1 class="text-center">Informasi Rawat Inap</h1>
+	</div>
+	<div class="choice-module" ng-if="!maintenance">
+		<h3 class=""><i class="fa fa-th-large"></i> Ruangan {{dashboard_general.data_rooms.nama_ruangan}}</h3>
+	</div>
+	<div class="module-body" ng-if="!maintenance">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="room" ng-repeat="(k,v) in dashboard_general.data_rooms.kelas">
+						<div class="room-header">{{v.nama_kelas}}</div>
+						<div class="room-body">
+							<div id="lists">
+								<div class="beds" ng-repeat="r in v.bed">
+									<div class="box">
+										<img src="assets/images/status_bed{{r.status_bed}}.png">
+										<div class="info">
+											<span>No. Bed</span>
+											<span>{{r.no_bed}}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="loading-page {{is_loading_page==false ? 'stop' : ''}}">
+		<div class="sk-three-bounce">
+		  <div class="sk-child sk-bounce1"></div>
+		  <div class="sk-child sk-bounce2"></div>
+		  <div class="sk-child sk-bounce3"></div>
+		</div>
+	</div>
+</div>
+<style type="text/css">
+	.module {
+		display: block;
+		position: relative;
+		overflow-y: auto;
+		visibility: visible; 
+		opacity: 1;
+		transition: all .3s;
+	}
+	.module .module-header {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		padding: 20px 0;
+		background: #12acf3;
+		color: white;
+		box-shadow: 0 5px 10px -3px #ccc;
+		z-index: 1000;
+	}
+	.module .module-header .back {
+		position: absolute;
+		left: 10px;
+		top: 50%;
+		transform: translateY(-50%);
+		padding: 5px;
+		font-size: 15px;
+		transition: all .3s;
+	}
+	.module .module-header .back:hover,
+	.module .module-header .back:active,
+	.module .module-header .back:focus {
+		background: #0193ff;
+		text-decoration: none;
+		outline: none;
+		color: #fff;
+	}
+	.module .module-header h1{
+		font-size: 25px;
+		font-weight: bold;
+		letter-spacing: 2px;
+	}
+	.module .module-body {
+		padding-top: 124px;
+		height: 100%;
+		overflow-y: auto
+	}
+	.module .choice-module {
+		position: fixed;
+		top: 68px;
+		left: 0;
+		right: 0;
+		font-size: 22px;
+		padding: 15px;
+		background: #f9f9f9;
+		z-index: 1000;
+	}
+	.room {
+		margin-bottom: 10px;
+		background: #ffffff;
+	}
+	.room .room-header {
+		background: #ccc;
+		padding: 10px;
+		font-size: 15px;
+		font-weight: bold;
+		letter-spacing: 1px;
+	}
+	.room .room-body {
+		box-shadow: 0 2px 2px -1px #ccc;
+		background: #fff;
+	}
+	#lists {
+		padding: 5px;
+	}
+	#lists:before,
+	#lists:after {
+		content: "";
+		display: table;
+	}
+	#lists:after {
+		clear: both
+	}
+	.beds {
+		float: left;
+		min-width: 140px;
+		padding: 5px;
+	}
+	.beds .box {
+		position: relative;
+		padding: 5px 10px;
+		background: #eee;
+		box-shadow: 0 1px 3px 0px #ccc;
+	}
+	.beds .box img {
+		position: absolute;
+		top: 5px;
+		left: 10px;
+		width: 45px;
+	}
+	.beds .box .info {
+		padding-left: 60px;
+	}
+	.beds .box .info span {
+		display: block;
+		font-size: 13px;
+		font-weight: bold;
+	}
+	.beds .box .info span:last-child {
+		font-size: 20px;
+		letter-spacing: 1px;
+	}
+
+	.module-footer {
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: #fff;
+		border-top: 1px solid #ccc;
+	}
+	.module-footer p {
+		padding: 15px;
+		margin: 0;
+		font-size: 12px;
+	}
+	.module-footer p span {
+		font-weight: bold;
+	}
+</style>
